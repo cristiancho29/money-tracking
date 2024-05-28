@@ -18,12 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-        />
-      </head>
       <body className={classNames(inter.className, "flex min-h-screen")}>
         <NavMenu />
         <main className=" bg-green-100 dark:bg-green-950 flex flex-col flex-1 px-5 py-2 relative gap-4 dar">
