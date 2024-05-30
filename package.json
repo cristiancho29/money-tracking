@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "npx playwright test",
+    "test:e2e-report": "npx playwright show-report"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -25,6 +27,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.12.13",
     "@typescript-eslint/parser": "^7.11.0",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^1.2.0",
