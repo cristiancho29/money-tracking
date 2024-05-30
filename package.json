@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
+    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
+    "test": "vitest"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -29,6 +30,7 @@
     "eslint-plugin-astro": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-oxlint": "^0.4.0",
-    "oxlint": "^0.4.2"
+    "oxlint": "^0.4.2",
+    "vitest": "^1.6.0"
   }
 }
