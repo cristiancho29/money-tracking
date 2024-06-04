@@ -1,4 +1,6 @@
 ---
+import NavMenu from "../components/nav-menu";
+
 interface Props {
   title: string;
 }
@@ -17,8 +19,17 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <div class="flex">
+      <NavMenu />
+      <main class="flex-1 p-6 bg-green-900 text-gray-200">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
 
-<style is:global></style>
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+</style>
