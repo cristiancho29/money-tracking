@@ -1,5 +1,8 @@
 ---
+import MovementsList from "../components/movements/movements-list";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Money Tracking - Movements"> Movements </Layout>
+<Layout title="Money Tracking - Movements">
+  <MovementsList movements={[]} client:load />
+</Layout>
