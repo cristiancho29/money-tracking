@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import Modal from "../modal";
 import { useStore } from "@nanostores/react";
-import { $isModalOpen, closeModal } from "../../lib/store/movements";
+import { $isFormModalOpen, closeFormModal } from "../../lib/store/movements";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { $selectedMovement } from "../../lib/store/movements";
 
@@ -30,7 +30,7 @@ const movementToFormValues = (movement: any): IFormInput => {
 
 export default function MovementsModal() {
   const selectedMovement: any = useStore($selectedMovement);
-  const isOpen = useStore($isModalOpen);
+  const isOpen = useStore($isFormModalOpen);
 
   const {
     register,
@@ -46,7 +46,7 @@ export default function MovementsModal() {
   }, [selectedMovement]);
 
   const handleClose = () => {
-    closeModal();
+    closeFormModal();
   };
 
   const modalTitle = useMemo(
@@ -57,7 +57,7 @@ export default function MovementsModal() {
   const onHandleSubmit: SubmitHandler<IFormInput> = (data) => {
     // POST form data
     console.log("Form data", data);
-    closeModal();
+    closeFormModal();
   };
 
   return (
