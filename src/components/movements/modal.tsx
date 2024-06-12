@@ -1,18 +1,15 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import Modal from "../modal";
 import { useStore } from "@nanostores/react";
-import { isModalOpen } from "../../lib/store/movements";
+import { $isModalOpen, closeModal } from "../../lib/store/movements";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { $selectedMovement } from "../../lib/store/movements";
 
 const initialValues: IFormInput = {
   description: "",
   amount: 0,
   category: "",
   type: "income",
-};
-
-type MovementsModalProps = {
-  movement?: any;
 };
 
 type IFormInput = {
@@ -31,27 +28,36 @@ const movementToFormValues = (movement: any): IFormInput => {
   };
 };
 
-export default function MovementsModal({ movement }: MovementsModalProps) {
+export default function MovementsModal() {
+  const selectedMovement: any = useStore($selectedMovement);
+  const isOpen = useStore($isModalOpen);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>({
-    defaultValues: movement ? movementToFormValues(movement) : initialValues,
-  });
-  const isOpen = useStore(isModalOpen);
+    reset,
+  } = useForm<IFormInput>();
+
+  useEffect(() => {
+    reset(
+      selectedMovement ? movementToFormValues(selectedMovement) : initialValues,
+    );
+  }, [selectedMovement]);
+
   const handleClose = () => {
-    isModalOpen.set(false);
+    closeModal();
   };
+
   const modalTitle = useMemo(
-    () => `${movement ? "Edit" : "Add"} Movement`,
-    movement,
+    () => `${selectedMovement ? "Edit" : "Add"} Movement`,
+    [selectedMovement],
   );
 
   const onHandleSubmit: SubmitHandler<IFormInput> = (data) => {
     // POST form data
     console.log("Form data", data);
-    isModalOpen.set(false);
+    closeModal();
   };
 
   return (
@@ -92,7 +98,10 @@ export default function MovementsModal({ movement }: MovementsModalProps) {
           className="flex flex-col text-sm font-semibold col-span-1"
         >
           Category
-          <input id="category" name="category" className="mt-2 p-2 rounded" />
+          <input
+            {...register("category", { required: true })}
+            className="mt-2 p-2 rounded"
+          />
         </label>
         <label
           htmlFor="type"
@@ -104,7 +113,7 @@ export default function MovementsModal({ movement }: MovementsModalProps) {
             className="mt-2 p-2 rounded"
           >
             <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="outcome">Outcome</option>
           </select>
         </label>
         <button

@@ -1,5 +1,6 @@
-import MovementsModal from "./movements-modal";
-import { isModalOpen } from "../../lib/store/movements";
+import MovementsModal from "./modal";
+import { openModal } from "../../lib/store/movements";
+import MovementItem from "./item";
 
 type MovementsListProps = {
   movements: Array<any>;
@@ -7,7 +8,7 @@ type MovementsListProps = {
 
 export default function MovementsList({ movements }: MovementsListProps) {
   const onHandleAddMovement = () => {
-    isModalOpen.set(true);
+    openModal();
   };
   return (
     <div className="flex flex-col">
@@ -18,8 +19,8 @@ export default function MovementsList({ movements }: MovementsListProps) {
         Add Movement
       </button>
       <div>
-        {movements.map((_, index) => (
-          <div key={index}>Movement Item</div>
+        {movements.map((movement, index) => (
+          <MovementItem key={index} movement={movement} />
         ))}
       </div>
       <MovementsModal />
