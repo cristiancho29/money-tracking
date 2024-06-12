@@ -4,7 +4,7 @@ import {
   DialogTitle,
   CloseButton,
 } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/20/solid";
+import CloseIcon from "virtual:icons/mdi/close";
 
 type ModalProps = {
   isOpen: boolean;
@@ -26,7 +26,7 @@ export default function Modal({
           <DialogTitle className="pb-4 font-bold text-xl flex justify-between">
             {title}
             <CloseButton>
-              <XMarkIcon className="fill-slate-400 w-6 h-6" />
+              <CloseIcon className="text-slate-600 w-6 h-6" />
             </CloseButton>
           </DialogTitle>
           {children}
