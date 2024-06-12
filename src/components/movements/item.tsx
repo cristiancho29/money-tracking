@@ -3,7 +3,11 @@ import { parseToCurrency } from "../../helpers";
 import { useMemo } from "react";
 import EditIcon from "virtual:icons/mdi/edit";
 import DeleteIcon from "virtual:icons/mdi/delete";
-import { $selectedMovement, openModal } from "../../lib/store/movements";
+import {
+  $selectedMovement,
+  openDeleteModal,
+  openFormModal,
+} from "../../lib/store/movements";
 
 type Props = {
   movement: any;
@@ -14,7 +18,12 @@ export default function MovementItem({ movement }: Props) {
 
   function handleOpenEditModal() {
     $selectedMovement.set(movement);
-    openModal();
+    openFormModal();
+  }
+
+  function handleOpenDeleteModal() {
+    $selectedMovement.set(movement);
+    openDeleteModal();
   }
 
   return (
@@ -38,7 +47,10 @@ export default function MovementItem({ movement }: Props) {
             className="w-6 h-6 text-slate-500"
             onClick={handleOpenEditModal}
           />
-          <DeleteIcon className="w-6 h-6 text-slate-500" />
+          <DeleteIcon
+            className="w-6 h-6 text-slate-500"
+            onClick={handleOpenDeleteModal}
+          />
         </div>
       </div>
       <div className="flex justify-between px-2 py-6">

@@ -1,19 +1,17 @@
-import MovementsModal from "./modal";
-import { openModal } from "../../lib/store/movements";
+import MovementsModal from "./form-modal";
+import { openFormModal } from "../../lib/store/movements";
 import MovementItem from "./item";
+import DeleteModal from "./delete-modal";
 
 type MovementsListProps = {
   movements: Array<any>;
 };
 
 export default function MovementsList({ movements }: MovementsListProps) {
-  const onHandleAddMovement = () => {
-    openModal();
-  };
   return (
     <div className="flex flex-col">
       <button
-        onClick={onHandleAddMovement}
+        onClick={openFormModal}
         className="bg-green-700 w-fit rounded p-2 self-end"
       >
         Add Movement
@@ -24,6 +22,7 @@ export default function MovementsList({ movements }: MovementsListProps) {
         ))}
       </div>
       <MovementsModal />
+      <DeleteModal />
     </div>
   );
 }
