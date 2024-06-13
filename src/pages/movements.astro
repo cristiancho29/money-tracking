@@ -1,23 +1,8 @@
 ---
 import MovementsList from "../components/movements/list";
 import Layout from "../layouts/Layout.astro";
-
-const movements = [
-  {
-    description: "Test",
-    amount: 100000,
-    type: "income",
-    category: "salary",
-  },
-  {
-    description: "Test",
-    amount: 100000,
-    type: "outcome",
-    category: "rent",
-  },
-];
 ---
 
 <Layout title="Money Tracking - Movements">
-  <MovementsList movements={movements} client:load />
+  <MovementsList client:load />
 </Layout>
