@@ -3,11 +3,12 @@ import { supabase } from "../../../lib/supabase";
 
 export const GET: APIRoute = async ({ params }) => {
   try {
-    const response = await supabase
+    const { data, error } = await supabase
       .from("movements")
-      .select("*")
+      .select()
       .filter("id", "eq", params.id);
-    return new Response(JSON.stringify(response.data), { status: 200 });
+    if (error) throw error;
+    return new Response(JSON.stringify(data), { status: 200 });
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
@@ -17,13 +18,14 @@ export const GET: APIRoute = async ({ params }) => {
 
 export const PUT: APIRoute = async ({ request }) => {
   try {
-    const body: any = await request.json();
-    const response: any = await supabase
+    const body: MovementI = await request.json();
+    const { data, error }: any = await supabase
       .from("movements")
-      .update(request.body)
+      .update(body)
       .match({ id: body.id })
-      .select("*");
-    return new Response(JSON.stringify(response.data), { status: 200 });
+      .select();
+    if (error) throw error;
+    return new Response(JSON.stringify(data), { status: 200 });
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
@@ -33,11 +35,13 @@ export const PUT: APIRoute = async ({ request }) => {
 
 export const DELETE: APIRoute = async ({ params }) => {
   try {
-    const response = await supabase
+    const { data, error } = await supabase
       .from("movements")
       .delete()
-      .match({ id: params.id });
-    return new Response(JSON.stringify(response.data), { status: 200 });
+      .match({ id: params.id })
+      .select();
+    if (error) throw error;
+    return new Response(JSON.stringify(data), { status: 200 });
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,

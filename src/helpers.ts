@@ -4,3 +4,7 @@ export const parseToCurrency = (value: number) => {
     currency: "USD",
   }).format(value);
 };
+
+export const isNumberGreaterThanZero = (value: number) => {
+  return !isNaN(value) && value > 0;
+};
