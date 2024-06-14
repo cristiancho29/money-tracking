@@ -3,14 +3,16 @@ import Modal from "../modal";
 import { useStore } from "@nanostores/react";
 import {
   $isFormModalOpen,
+  $loading,
   addMovementToList,
   closeFormModal,
   editMovementInList,
+  setLoading,
 } from "../../lib/store/movements";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { $selectedMovement } from "../../lib/store/movements";
-import { isNumberGreaterThanZero } from "../../helpers";
-
+import { isLoaded, isNumberGreaterThanZero } from "../../helpers";
+import Loading from "../loader";
 const initialValues: MovementI = {
   description: "",
   amount: 0,
@@ -18,15 +20,9 @@ const initialValues: MovementI = {
   type: "income",
 };
 
-const movementToFormValues = (movement: MovementI): MovementI => {
-  return {
-    ...movement,
-    type: movement.type as "income" | "expense",
-  };
-};
-
 export default function MovementsModal() {
-  const movement: MovementI | null = useStore($selectedMovement);
+  const movement = useStore($selectedMovement);
+  const loading = useStore($loading);
   const isOpen = useStore($isFormModalOpen);
   const {
     register,
@@ -36,7 +32,7 @@ export default function MovementsModal() {
   } = useForm<MovementI>();
 
   useEffect(() => {
-    reset(movement ? movement : initialValues);
+    reset(movement || initialValues);
   }, [movement]);
 
   const handleClose = () => {
@@ -48,32 +44,42 @@ export default function MovementsModal() {
     [movement],
   );
 
+  const submitText = useMemo(() => (movement ? "Edit" : "Create"), [movement]);
+
   const onHandleCreate: SubmitHandler<MovementI> = async (formData) => {
     try {
+      setLoading("loading");
       const response = await fetch(`/api/movements`, {
         method: "POST",
         body: JSON.stringify(formData),
       });
       const data: Array<MovementI> = await response.json();
       addMovementToList(data[0]);
+      reset();
       closeFormModal();
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading("loaded");
     }
   };
 
   const onHandleEdit: SubmitHandler<MovementI> = async (formData) => {
     if (movement) {
       try {
+        setLoading("loading");
         const response = await fetch(`/api/movements/${movement.id}`, {
           method: "PUT",
           body: JSON.stringify({ ...movement, ...formData }),
         });
         const data: Array<MovementI> = await response.json();
         editMovementInList(data[0]);
+        reset();
         closeFormModal();
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading("loaded");
       }
     }
   };
@@ -144,7 +150,11 @@ export default function MovementsModal() {
           className="bg-green-700 mt-4 rounded p-2 text-white col-span-full"
           type="submit"
         >
-          {movement ? "Edit" : "Create"}
+          {!isLoaded(loading) ? (
+            <Loading className="w-4 h-4 border-[1px]" />
+          ) : (
+            submitText
+          )}
         </button>
       </form>
     </Modal>
