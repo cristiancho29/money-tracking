@@ -10,7 +10,7 @@ import {
 } from "../../lib/store/movements";
 
 type Props = {
-  movement: any;
+  movement: MovementI;
 };
 
 export default function MovementItem({ movement }: Props) {
@@ -29,7 +29,7 @@ export default function MovementItem({ movement }: Props) {
   return (
     <div
       className={classNames(
-        "flex flex-col  my-4 text-gray-700 rounded-lg pb-2",
+        "flex flex-col w-full my-4 text-gray-700 rounded-lg pb-2",
         isIncome ? "bg-green-300" : "bg-red-300",
       )}
     >

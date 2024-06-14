@@ -1,17 +1,23 @@
 import { atom } from "nanostores";
+import type { LoadingI } from "./types";
 
 export const $isFormModalOpen = atom(false);
 export const $isDeleteModalOpen = atom(false);
 export const $selectedMovement = atom<MovementI | null>(null);
 export const $movements = atom<Array<MovementI>>([]);
+export const $loading = atom<LoadingI>("empty");
+
+export const setLoading = (loading: LoadingI) => {
+  $loading.set(loading);
+};
 
 export const openFormModal = () => {
   $isFormModalOpen.set(true);
 };
 
 export const closeFormModal = () => {
-  $isFormModalOpen.set(false);
   $selectedMovement.set(null);
+  $isFormModalOpen.set(false);
 };
 
 export const openDeleteModal = () => {
@@ -19,8 +25,8 @@ export const openDeleteModal = () => {
 };
 
 export const closeDeleteModal = () => {
-  $isDeleteModalOpen.set(false);
   $selectedMovement.set(null);
+  $isDeleteModalOpen.set(false);
 };
 
 export const addMovementToList = (movement: MovementI) => {
