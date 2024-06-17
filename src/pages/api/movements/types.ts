@@ -1,6 +1,6 @@
 type MovementType = "income" | "expense";
 
-interface MovementI {
+export interface MovementI {
   id?: number;
   type: MovementType;
   amount: number;

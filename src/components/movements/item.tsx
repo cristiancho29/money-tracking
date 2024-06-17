@@ -8,6 +8,7 @@ import {
   openDeleteModal,
   openFormModal,
 } from "../../lib/store/movements";
+import type { MovementI } from "../../pages/api/movements/types";
 
 type Props = {
   movement: MovementI;

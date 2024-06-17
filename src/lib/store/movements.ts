@@ -1,5 +1,6 @@
 import { atom } from "nanostores";
 import type { LoadingI } from "./types";
+import type { MovementI } from "../../pages/api/movements/types";
 
 export const $isFormModalOpen = atom(false);
 export const $isDeleteModalOpen = atom(false);

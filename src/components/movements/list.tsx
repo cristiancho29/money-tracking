@@ -10,6 +10,7 @@ import DeleteModal from "./delete-modal";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
 import ListWrapper from "../list-wrapper";
+import type { MovementI } from "../../pages/api/movements/types";
 
 async function getMovements() {
   const response = await fetch("/api/movements");

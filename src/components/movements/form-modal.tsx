@@ -13,6 +13,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { $selectedMovement } from "../../lib/store/movements";
 import { isLoaded, isNumberGreaterThanZero } from "../../helpers";
 import Loading from "../loader";
+import type { MovementI } from "../../pages/api/movements/types";
 const initialValues: MovementI = {
   description: "",
   amount: 0,

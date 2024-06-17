@@ -11,6 +11,7 @@ import Modal from "../modal";
 import { useCallback } from "react";
 import Loading from "../loader";
 import { isLoaded } from "../../helpers";
+import type { MovementI } from "../../pages/api/movements/types";
 
 export default function DeleteModal() {
   const loading = useStore($loading);
