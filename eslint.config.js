@@ -1,8 +1,9 @@
 import eslintPluginAstro from "eslint-plugin-astro";
 import oxlint from "eslint-plugin-oxlint";
+import tseslint from "typescript-eslint";
 export default [
   // add more generic rule sets here, such as:
-  // js.configs.recommended,
+  ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
     files: ["*.astro"],

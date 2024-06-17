@@ -6,8 +6,8 @@ export const GET: APIRoute = async () => {
     const { data, error } = await supabase.from("movements").select();
     if (error) throw error;
     return new Response(JSON.stringify(data), { status: 200 });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), {
+  } catch (error) {
+    return new Response(JSON.stringify({ error }), {
       status: 500,
     });
   }
@@ -21,8 +21,8 @@ export const POST: APIRoute = async ({ request }) => {
   if (error) throw error;
   try {
     return new Response(JSON.stringify(data), { status: 200 });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), {
+  } catch (error) {
+    return new Response(JSON.stringify({ error }), {
       status: 500,
     });
   }

@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
+    "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && npx eslint --fix 'src/**/*.{js,jsx,ts,tsx}' && tsc --noemit",
     "test": "vitest",
     "test:e2e": "npx playwright test",
     "test:e2e-report": "npx playwright show-report"
@@ -33,17 +33,20 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@eslint/js": "^9.5.0",
     "@iconify/json": "^2.2.218",
     "@playwright/test": "^1.44.1",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.12.13",
     "@typescript-eslint/parser": "^7.11.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-astro": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-oxlint": "^0.4.0",
     "oxlint": "^0.4.2",
+    "typescript-eslint": "^7.13.0",
     "unplugin-icons": "^0.19.0",
     "vitest": "^1.6.0"
   }
