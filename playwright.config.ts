@@ -25,9 +25,13 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.CI ? process.env.BASE_URL : "http://localhost:4321",
-
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    extraHTTPHeaders: {
+      "x-vercel-protection-bypass":
+        process.env.VERCEL_AUTOMATION_BYPASS_SECRET || "",
+      "x-vercel-set-bypass-cookie": "samesitenone",
+    },
   },
 
   /* Configure projects for major browsers */
