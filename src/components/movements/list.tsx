@@ -10,12 +10,17 @@ import DeleteModal from "./delete-modal";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
 import ListWrapper from "../list-wrapper";
-import type { MovementI } from "../../pages/api/movements/types";
+// import type { MovementI } from "../../pages/api/movements/types";
 
 async function getMovements() {
-  const response = await fetch("/api/movements");
-  const data: Array<MovementI> = await response.json();
-  $movements.set(data);
+  try {
+    const response = await fetch("/api/movements");
+    console.log({ response });
+    // const data = await response.text();
+    // $movements.set(JSON.parse(data));
+  } catch (error) {
+    console.error({ error }, "catch error getMovements");
+  }
 }
 
 export default function MovementsList() {

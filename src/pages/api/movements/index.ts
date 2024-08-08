@@ -4,12 +4,16 @@ import { supabase } from "../../../lib/supabase";
 export const GET: APIRoute = async () => {
   try {
     const { data, error } = await supabase.from("movements").select();
-    if (error) throw error;
-    return new Response(JSON.stringify(data), { status: 200 });
+    console.log({ data, error });
+    // if (error) throw error;
+    return Response.json(data, { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error }), {
-      status: 500,
-    });
+    return Response.json(
+      { error },
+      {
+        status: 500,
+      },
+    );
   }
 };
 
