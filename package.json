@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "astro-toolbar:enable": "astro preferences enable devToolbar",
+    "astro-toolbar:disable": "astro preferences disable devToolbar",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && npx eslint --fix 'src/**/*.{js,jsx,ts,tsx}' && tsc --noemit",
