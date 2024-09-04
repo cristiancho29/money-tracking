@@ -13,7 +13,8 @@
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && npx oxlint && npx eslint --fix 'src/**/*.{js,jsx,ts,tsx}' && tsc --noemit",
     "test": "vitest",
     "test:e2e": "npx playwright test",
-    "test:e2e-report": "npx playwright show-report"
+    "test:e2e-report": "npx playwright show-report",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "0.9.3",
@@ -46,7 +47,9 @@
     "eslint-plugin-astro": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-oxlint": "^0.4.0",
+    "husky": "^9.1.5",
     "oxlint": "^0.4.2",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript-eslint": "^7.13.0",
     "unplugin-icons": "^0.19.2",
     "vitest": "^1.6.0"

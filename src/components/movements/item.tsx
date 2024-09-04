@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { parseToCurrency } from "../../helpers";
 import { useMemo } from "react";
-import EditIcon from "virtual:icons/mdi/edit";
-import DeleteIcon from "virtual:icons/mdi/delete";
+import EditIcon from "~icons/mdi/edit";
+import DeleteIcon from "~icons/mdi/delete";
 import {
   $selectedMovement,
   openDeleteModal,

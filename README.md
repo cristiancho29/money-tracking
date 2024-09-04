@@ -59,5 +59,5 @@ To add icons just visit the [official iconify web](https://icon-sets.iconify.des
 
 - Search for the icon you are looking for, using the Search input
 - Click on it
-- Above the *Components* label select  **Unplugin Icons**
+- Above the _Components_ label select **Unplugin Icons**
 - Copy the import as this example `import MdiAccountChild from '~icons/mdi/account-child';`

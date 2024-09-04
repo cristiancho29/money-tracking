@@ -4,7 +4,7 @@ import {
   DialogTitle,
   CloseButton,
 } from "@headlessui/react";
-import CloseIcon from "virtual:icons/mdi/close";
+import CloseIcon from "~icons/mdi/close";
 
 type ModalProps = {
   isOpen: boolean;
