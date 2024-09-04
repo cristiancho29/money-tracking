@@ -1,3 +1,4 @@
+/// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 interface ImportMetaEnv {
   readonly SUPABASE_URL: string;
@@ -8,7 +9,7 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-declare module "virtual:icons/*" {
+declare module "~icons/*" {
   import type { SVGProps } from "react";
   import type React from "react";
   const component: (props: SVGProps<SVGSVGElement>) => React.ReactElement;
