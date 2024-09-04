@@ -52,3 +52,12 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Icons
+
+To add icons just visit the [official iconify web](https://icon-sets.iconify.design/mdi/), following these instructions:
+
+- Search for the icon you are looking for, using the Search input
+- Click on it
+- Above the *Components* label select  **Unplugin Icons**
+- Copy the import as this example `import MdiAccountChild from '~icons/mdi/account-child';`
